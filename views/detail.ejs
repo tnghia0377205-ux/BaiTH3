@@ -1,0 +1,15 @@
+<%- include('layouts/header') %>
+
+<div class="container mt-4">
+  <h1><%= item.name %></h1>
+  <p><%= item.description %></p>
+  <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+
+  <% if(item.hot){ %>
+    <p class="text-danger">Địa điểm HOT</p>
+  <% } %>
+
+  <a href="/list" class="btn btn-secondary">← Quay lại</a>
+</div>
+
+<%- include('layouts/footer') %>

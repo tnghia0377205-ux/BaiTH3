@@ -1,0 +1,23 @@
+<%- include('layouts/header') %>
+
+<div class="container mt-4">
+  <h1>Danh sách địa điểm</h1>
+
+  <% items.forEach(item => { %>
+    <div class="card mb-3 p-3">
+      <h3><%= item.name %></h3>
+      <p><%= item.description %></p>
+      <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+
+      <% if(item.hot){ %>
+        <span class="badge bg-danger">Hot</span>
+      <% } %>
+
+      <br>
+      <a href="/detail/<%= item.id %>" class="btn btn-primary">Xem</a>
+    </div>
+  <% }) %>
+
+</div>
+
+<%- include('layouts/footer') %>
