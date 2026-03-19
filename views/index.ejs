@@ -1,64 +1,51 @@
 <%- include('layouts/header') %>
 
-<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/">My Website</a>
     <div>
-      <a class="nav-link d-inline" href="#about">About</a>
-      <a class="nav-link d-inline" href="#services">Services</a>
+      <a class="nav-link d-inline" href="/">Home</a>
       <a class="nav-link d-inline" href="/list">Danh sách</a>
       <a class="nav-link d-inline" href="/contact">Liên hệ</a>
     </div>
   </div>
 </nav>
 
-<!-- HEADER (CÓ ẢNH NỀN) -->
 <header class="masthead text-white text-center">
   <div class="container">
-    <h1 class="fw-bold">Website du lịch 🚀</h1>
-    <p>Khám phá những địa điểm tuyệt vời</p>
+    <h1>Website du lịch 🚀</h1>
     <a href="/list" class="btn btn-primary">Xem danh sách</a>
   </div>
 </header>
 
-<!-- About -->
-<section class="bg-primary text-white text-center p-5" id="about">
-  <h2>Chúng tôi có mọi thứ bạn cần</h2>
-</section>
-
-<!-- Services -->
-<section class="text-center p-5" id="services">
-  <h2>Dịch vụ của chúng tôi</h2>
-</section>
-
-<!-- DANH SÁCH (dynamic) -->
 <div class="container mt-5">
   <div class="row">
-    <% items.forEach(item => { %>
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <img src="/assets/img/portfolio/thumbnails/1.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5><%= item.name %></h5>
-            <p><%= item.description %></p>
 
-            <% if(item.hot){ %>
-              <span class="badge bg-danger">Hot</span>
-            <% } %>
-
-            <br><br>
-            <a href="/detail/<%= item.id %>" class="btn btn-success">Chi tiết</a>
+    <% if(items.length === 0){ %>
+      <p class="text-center">Không có dữ liệu</p>
+    <% } else { %>
+      <% items.forEach(item => { %>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="/assets/img/portfolio/thumbnails/1.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5><%= item.name %></h5>
+              <p><%= item.description %></p>
+              <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+              <% if(item.hot){ %>
+                <span class="badge bg-danger">Hot</span>
+              <% } else { %>
+                <span class="badge bg-secondary">Normal</span>
+              <% } %>
+              <br><br>
+              <a href="/detail/<%= item.id %>" class="btn btn-success">Chi tiết</a>
+            </div>
           </div>
         </div>
-      </div>
-    <% }) %>
+      <% }) %>
+    <% } %>
+
   </div>
 </div>
-
-<!-- Contact -->
-<section class="text-center p-5">
-  <a href="/contact" class="btn btn-primary">Liên hệ</a>
-</section>
 
 <%- include('layouts/footer') %>

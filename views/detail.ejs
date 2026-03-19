@@ -1,15 +1,23 @@
 <%- include('layouts/header') %>
 
-<div class="container mt-4">
-  <h1><%= item.name %></h1>
-  <p><%= item.description %></p>
-  <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+<div class="container mt-5">
+  <h2>Chi tiết địa điểm</h2>
 
-  <% if(item.hot){ %>
-    <p class="text-danger">Địa điểm HOT</p>
+  <% if(item){ %>
+    <h3><%= item.name %></h3>
+    <p><%= item.description %></p>
+    <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+    <% if(item.hot){ %>
+      <span class="badge bg-danger">Hot</span>
+    <% } else { %>
+      <span class="badge bg-secondary">Normal</span>
+    <% } %>
+  <% } else { %>
+    <p>Không tìm thấy dữ liệu</p>
   <% } %>
 
-  <a href="/list" class="btn btn-secondary">← Quay lại</a>
+  <br>
+  <a href="/list">Quay lại</a>
 </div>
 
 <%- include('layouts/footer') %>

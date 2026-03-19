@@ -1,23 +1,34 @@
 <%- include('layouts/header') %>
 
-<div class="container mt-4">
-  <h1>Danh sách địa điểm</h1>
+<div class="container mt-5">
+  <h2>Danh sách địa điểm</h2>
+  <div class="row">
 
-  <% items.forEach(item => { %>
-    <div class="card mb-3 p-3">
-      <h3><%= item.name %></h3>
-      <p><%= item.description %></p>
-      <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+    <% if(items.length === 0){ %>
+      <p class="text-center">Không có dữ liệu</p>
+    <% } else { %>
+      <% items.forEach(item => { %>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="/assets/img/portfolio/thumbnails/1.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5><%= item.name %></h5>
+              <p><%= item.description %></p>
+              <p>Giá: <%= item.price.toLocaleString() %> VNĐ</p>
+              <% if(item.hot){ %>
+                <span class="badge bg-danger">Hot</span>
+              <% } else { %>
+                <span class="badge bg-secondary">Normal</span>
+              <% } %>
+              <br><br>
+              <a href="/detail/<%= item.id %>" class="btn btn-success">Chi tiết</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
 
-      <% if(item.hot){ %>
-        <span class="badge bg-danger">Hot</span>
-      <% } %>
-
-      <br>
-      <a href="/detail/<%= item.id %>" class="btn btn-primary">Xem</a>
-    </div>
-  <% }) %>
-
+  </div>
 </div>
 
 <%- include('layouts/footer') %>
